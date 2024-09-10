@@ -11,12 +11,12 @@ export class OrderItemEntity {
   }
 
   validate(): void {
-    if (this._name.length === 0) {
-      throw new Error("Name is required");
-    }
-
     if (this._id.length === 0) {
       throw new Error("ID is required");
+    }
+
+    if (this._name.length === 0) {
+      throw new Error("Name is required");
     }
   }
 }
