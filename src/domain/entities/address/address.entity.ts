@@ -1,8 +1,8 @@
 export class AddressEntity {
-  _street: string;
-  _city: string;
-  _state: string;
-  _zipCode: string;
+  private _street: string;
+  private _city: string;
+  private _state: string;
+  private _zipCode: string;
 
   constructor(street: string, city: string, state: string, zipCode: string) {
     this._street = street;
