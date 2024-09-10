@@ -15,7 +15,7 @@ export class OrderEntity {
   }
 
   total(): number {
-    return this._items.reduce((sum, item) => sum + item.price, 0);
+    return this._items.reduce((acc, item) => acc + item.orderItemTotal(), 0);
   }
 
   validate(): boolean {
@@ -29,6 +29,10 @@ export class OrderEntity {
 
     if (this._items.length === 0) {
       throw new Error("At least one item is required");
+    }
+
+    if (this._items.some((item) => item.quantity <= 0)) {
+      throw new Error("Quantity must be greater than zero");
     }
 
     return true;
