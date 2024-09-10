@@ -1,7 +1,7 @@
 export class OrderItemEntity {
-  _id: string;
-  _name: string;
-  _price: number;
+  private _id: string;
+  private _name: string;
+  private _price: number;
 
   constructor(id: string, name: string, price: number) {
     this._id = id;
@@ -10,7 +10,11 @@ export class OrderItemEntity {
     this.validate();
   }
 
-  validate(): void {
+  get price(): number {
+    return this._price;
+  }
+
+  validate(): boolean {
     if (this._id.length === 0) {
       throw new Error("ID is required");
     }
@@ -18,5 +22,7 @@ export class OrderItemEntity {
     if (this._name.length === 0) {
       throw new Error("Name is required");
     }
+
+    return true;
   }
 }

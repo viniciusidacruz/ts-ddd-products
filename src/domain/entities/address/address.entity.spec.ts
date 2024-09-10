@@ -55,5 +55,16 @@ describe("Address unit tests", () => {
         "Av. Papa João XXIII, 695, Ribeirão Pires, São Paulo 09421-540"
       );
     });
+
+    it("Should validated", () => {
+      const address = new AddressEntity(
+        "Av. Papa João XXIII, 695",
+        "Ribeirão Pires",
+        "São Paulo",
+        "09421-540"
+      );
+
+      expect(address.validate()).toBeTruthy();
+    });
   });
 });

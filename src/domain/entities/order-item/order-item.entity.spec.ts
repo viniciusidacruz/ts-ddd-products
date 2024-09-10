@@ -14,4 +14,16 @@ describe("OrderItem unit tests", () => {
       }).toThrow("Name is required");
     });
   });
+
+  describe("Success ✅", () => {
+    it("Should create valid order", () => {
+      const order = new OrderItemEntity(
+        "07556a1c-7b82-4104-94b1-cb8cab474a19",
+        "Landing Page",
+        1500
+      );
+
+      expect(order.validate()).toBeTruthy();
+    });
+  });
 });

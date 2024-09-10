@@ -1,10 +1,10 @@
 import { OrderItemEntity } from "..";
 
 export class OrderEntity {
-  _id: string;
-  _customerId: string;
-  _items: OrderItemEntity[] = [];
-  _total: number;
+  private _id: string;
+  private _customerId: string;
+  private _items: OrderItemEntity[] = [];
+  private _total: number;
 
   constructor(id: string, customerId: string, items: OrderItemEntity[]) {
     this._id = id;
@@ -15,10 +15,10 @@ export class OrderEntity {
   }
 
   total(): number {
-    return this._items.reduce((sum, item) => sum + item._price, 0);
+    return this._items.reduce((sum, item) => sum + item.price, 0);
   }
 
-  validate(): void {
+  validate(): boolean {
     if (this._customerId.length === 0) {
       throw new Error("Customer ID is required");
     }
@@ -26,5 +26,11 @@ export class OrderEntity {
     if (this._id.length === 0) {
       throw new Error("ID is required");
     }
+
+    if (this._items.length === 0) {
+      throw new Error("At least one item is required");
+    }
+
+    return true;
   }
 }

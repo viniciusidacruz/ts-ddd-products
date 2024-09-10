@@ -20,7 +20,7 @@ export class CustomerEntity {
     return this._active;
   }
 
-  validate(): void {
+  validate(): boolean {
     if (this._id.length === 0) {
       throw new Error("ID is required");
     }
@@ -28,6 +28,8 @@ export class CustomerEntity {
     if (this._name.length === 0) {
       throw new Error("Name is required");
     }
+
+    return true;
   }
 
   changeName(name: string): void {

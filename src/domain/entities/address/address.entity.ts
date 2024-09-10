@@ -12,7 +12,7 @@ export class AddressEntity {
     this.validate();
   }
 
-  validate(): void {
+  validate(): boolean {
     if (this._street.length === 0) {
       throw new Error("Street is required");
     }
@@ -28,6 +28,8 @@ export class AddressEntity {
     if (this._zipCode.length === 0) {
       throw new Error("Zip code is required");
     }
+
+    return true;
   }
 
   toString(): string {
