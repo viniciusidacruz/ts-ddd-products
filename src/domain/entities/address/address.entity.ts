@@ -25,8 +25,8 @@ export class AddressEntity {
       throw new Error("State is required");
     }
 
-    if (this._zipCode.length !== 5) {
-      throw new Error("Zip code must be 5 digits long");
+    if (this._zipCode.length === 0) {
+      throw new Error("Zip code is required");
     }
   }
 
