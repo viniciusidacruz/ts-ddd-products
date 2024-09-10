@@ -27,10 +27,14 @@
   "description": "Projeto para estudos do conceito DDD",
   "devDependencies": {
     "@eslint/js": "9.10.0",
+    "@swc/cli": "0.4.0",
+    "@swc/core": "1.7.24",
+    "@swc/jest": "0.2.36",
     "@types/jest": "29.5.12",
     "@types/node": "22.5.4",
     "globals": "15.9.0",
     "jest": "29.7.0",
+    "ts-node": "10.9.2",
     "tsx": "4.19.0",
     "typescript": "5.5.4"
   }
