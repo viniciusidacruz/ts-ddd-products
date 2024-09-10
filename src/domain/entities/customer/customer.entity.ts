@@ -1,10 +1,10 @@
 import { AddressEntity } from "../address/address.entity";
 
 export class CustomerEntity {
-  _id: string;
-  _name: string;
-  _address!: AddressEntity;
-  _active: boolean = false;
+  private _id: string;
+  private _name: string;
+  private _address!: AddressEntity;
+  private _active: boolean = false;
 
   constructor(id: string, name: string) {
     this._id = id;
@@ -12,13 +12,21 @@ export class CustomerEntity {
     this.validate();
   }
 
-  validate(): void {
-    if (this._name.length === 0) {
-      throw new Error("Name is required");
-    }
+  get name(): string {
+    return this._name;
+  }
 
+  isActive(): boolean {
+    return this._active;
+  }
+
+  validate(): void {
     if (this._id.length === 0) {
       throw new Error("ID is required");
+    }
+
+    if (this._name.length === 0) {
+      throw new Error("Name is required");
     }
   }
 
