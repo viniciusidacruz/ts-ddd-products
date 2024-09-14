@@ -1,5 +1,10 @@
-import { Model } from "sequelize";
-import { AllowNull, Column, PrimaryKey, Table } from "sequelize-typescript";
+import {
+  Model,
+  Column,
+  Table,
+  AllowNull,
+  PrimaryKey,
+} from "sequelize-typescript";
 
 @Table({
   tableName: "products",
@@ -10,11 +15,11 @@ export class ProductModel extends Model {
   @Column
   declare id: string;
 
-  @Column
   @AllowNull(false)
+  @Column
   declare name: string;
 
-  @Column
   @AllowNull(false)
+  @Column
   declare price: number;
 }
