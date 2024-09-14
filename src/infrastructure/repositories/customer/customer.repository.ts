@@ -21,10 +21,10 @@ export class CustomerRepository implements CustomerRepositoryInterface {
     await CustomerModel.update(
       {
         name: entity.name,
-        street: entity.Address?.street,
-        zipCode: entity.Address?.zipCode,
-        city: entity.Address?.street,
-        state: entity.Address?.state,
+        street: entity.address?.street,
+        zipCode: entity.address?.zipCode,
+        city: entity.address?.street,
+        state: entity.address?.state,
         active: entity.isActive(),
         rewardPoints: entity.rewardPoints,
       },
@@ -48,7 +48,7 @@ export class CustomerRepository implements CustomerRepositoryInterface {
       customerModel.zipCode
     );
 
-    customer.Address = address;
+    customer.changeAddress(address);
 
     return customer;
   }
@@ -71,7 +71,7 @@ export class CustomerRepository implements CustomerRepositoryInterface {
         customerModel.zipCode
       );
 
-      customer.Address = address;
+      customer.changeAddress(address);
 
       if (customerModel.active) {
         customer.activate();

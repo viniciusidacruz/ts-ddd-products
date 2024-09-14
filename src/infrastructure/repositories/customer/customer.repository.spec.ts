@@ -35,7 +35,7 @@ describe("Customer repository test", () => {
       "09421-540"
     );
 
-    customer.Address = address;
+    customer.changeAddress(address);
 
     await customerRepository.create(customer);
 
@@ -68,7 +68,7 @@ describe("Customer repository test", () => {
       "09421-540"
     );
 
-    customer.Address = address;
+    customer.changeAddress(address);
 
     await customerRepository.create(customer);
 
@@ -107,7 +107,7 @@ describe("Customer repository test", () => {
       "09421-540"
     );
 
-    customer.Address = address;
+    customer.changeAddress(address);
 
     await customerRepository.create(customer);
 
@@ -129,7 +129,7 @@ describe("Customer repository test", () => {
       "09421-540"
     );
 
-    customer.Address = address;
+    customer.changeAddress(address);
 
     await customerRepository.create(customer);
 
@@ -166,8 +166,8 @@ describe("Customer repository test", () => {
       "09876-543"
     );
 
-    customerOne.Address = addressOne;
-    customerTwo.Address = addressTwo;
+    customerOne.changeAddress(addressOne);
+    customerTwo.changeAddress(addressTwo);
 
     await customerRepository.create(customerOne);
     await customerRepository.create(customerTwo);

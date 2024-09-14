@@ -72,7 +72,7 @@ describe("Customer unit tests", () => {
         "09421-540"
       );
 
-      customer.Address = address;
+      customer.changeAddress(address);
 
       customer.activate();
 
@@ -97,6 +97,24 @@ describe("Customer unit tests", () => {
       customer.deactivate();
 
       expect(customer.isActive()).toBeFalsy();
+    });
+
+    it("Should change address", () => {
+      const customer = new CustomerEntity(
+        "07556a1c-7b82-4104-94b1-cb8cab474a19",
+        "John Doe"
+      );
+
+      const address = new AddressEntity(
+        "Av. Papa João XXIII, 695",
+        "Ribeirão Pires",
+        "São Paulo",
+        "09421-540"
+      );
+
+      customer.changeAddress(address);
+
+      expect(customer.address).toBe(address);
     });
   });
 });

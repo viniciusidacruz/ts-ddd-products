@@ -45,6 +45,10 @@ export class CustomerEntity {
     return true;
   }
 
+  changeAddress(address: AddressEntity): void {
+    this._address = address;
+  }
+
   changeName(name: string): void {
     this._name = name;
     this.validate();
@@ -64,9 +68,5 @@ export class CustomerEntity {
 
   addRewardPoints(points: number): void {
     this._rewardPoints += points;
-  }
-
-  set Address(address: AddressEntity) {
-    this._address = address;
   }
 }
