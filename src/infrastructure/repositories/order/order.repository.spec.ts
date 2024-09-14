@@ -1,18 +1,18 @@
 import { Sequelize } from "sequelize-typescript";
 import {
   OrderModel,
+  ProductModel,
   CustomerModel,
   OrderItemModel,
-  ProductModel,
 } from "../../database/sequelize/models";
 
 import { CustomerRepository, ProductRepository } from "..";
 import {
-  AddressEntity,
-  CustomerEntity,
   OrderEntity,
-  OrderItemEntity,
+  AddressEntity,
   ProductEntity,
+  CustomerEntity,
+  OrderItemEntity,
 } from "../../../domain/entities";
 import { OrderRepository } from "./order.repository";
 
@@ -100,5 +100,222 @@ describe("Order repository test", () => {
         },
       ],
     });
+  });
+
+  it("Should update an order", async () => {
+    const customerRepository = new CustomerRepository();
+    const customer = new CustomerEntity(
+      "ae594473-6724-4b7e-a0e6-f8704e904b01",
+      "John Doe"
+    );
+    const address = new AddressEntity(
+      "Av. Papa João XXIII, 695",
+      "Ribeirão Pires",
+      "São Paulo",
+      "09421-540"
+    );
+    customer.changeAddress(address);
+    await customerRepository.create(customer);
+
+    const productRepository = new ProductRepository();
+    const product = new ProductEntity(
+      "ae594473-6724-4b7e-a0e6-f8704e904b02",
+      "Product One",
+      15
+    );
+    await productRepository.create(product);
+
+    const orderItem = new OrderItemEntity(
+      "ae594473-6724-4b7e-a0e6-f8704e904b03",
+      product.name,
+      product.price,
+      2,
+      product.id
+    );
+
+    const order = new OrderEntity(
+      "ae594473-6724-4b7e-a0e6-f8704e904b03",
+      customer.id,
+      [orderItem]
+    );
+
+    const orderRepository = new OrderRepository();
+    await orderRepository.create(order);
+
+    // Atualizar a ordem
+    const updatedOrderItem = new OrderItemEntity(
+      orderItem.id,
+      "Updated Product",
+      20, // Preço atualizado
+      3, // Quantidade atualizada
+      product.id
+    );
+
+    const updatedOrder = new OrderEntity(order.id, customer.id, [
+      updatedOrderItem,
+    ]);
+
+    await orderRepository.update(updatedOrder);
+
+    // Buscar a ordem atualizada no banco de dados
+    const updatedOrderModel = await OrderModel.findOne({
+      where: { id: order.id },
+      include: ["items"],
+    });
+
+    expect(updatedOrderModel.toJSON()).toStrictEqual({
+      id: updatedOrder.id,
+      customer_id: updatedOrder.customerId,
+      total: updatedOrder.total(),
+      items: [
+        {
+          id: updatedOrderItem.id,
+          name: updatedOrderItem.name,
+          price: updatedOrderItem.price,
+          quantity: updatedOrderItem.quantity,
+          order_id: updatedOrder.id,
+          product_id: product.id,
+        },
+      ],
+    });
+  });
+
+  it("Should delete an order", async () => {
+    const customerRepository = new CustomerRepository();
+    const customer = new CustomerEntity(
+      "ae594473-6724-4b7e-a0e6-f8704e904b01",
+      "John Doe"
+    );
+    const address = new AddressEntity(
+      "Av. Papa João XXIII, 695",
+      "Ribeirão Pires",
+      "São Paulo",
+      "09421-540"
+    );
+    customer.changeAddress(address);
+    await customerRepository.create(customer);
+
+    const productRepository = new ProductRepository();
+    const product = new ProductEntity(
+      "ae594473-6724-4b7e-a0e6-f8704e904b02",
+      "Product One",
+      15
+    );
+    await productRepository.create(product);
+
+    const orderItem = new OrderItemEntity(
+      "ae594473-6724-4b7e-a0e6-f8704e904b03",
+      product.name,
+      product.price,
+      2,
+      product.id
+    );
+
+    const order = new OrderEntity(
+      "ae594473-6724-4b7e-a0e6-f8704e904b03",
+      customer.id,
+      [orderItem]
+    );
+
+    const orderRepository = new OrderRepository();
+    await orderRepository.create(order);
+
+    await orderRepository.delete(order.id);
+
+    const deletedOrder = await OrderModel.findOne({
+      where: { id: order.id },
+    });
+
+    expect(deletedOrder).toBeNull();
+  });
+
+  it("Should find all orders", async () => {
+    const customerRepository = new CustomerRepository();
+    const customer = new CustomerEntity(
+      "ae594473-6724-4b7e-a0e6-f8704e904b01",
+      "John Doe"
+    );
+    const address = new AddressEntity(
+      "Av. Papa João XXIII, 695",
+      "Ribeirão Pires",
+      "São Paulo",
+      "09421-540"
+    );
+    customer.changeAddress(address);
+    await customerRepository.create(customer);
+
+    const productRepository = new ProductRepository();
+    const product = new ProductEntity(
+      "ae594473-6724-4b7e-a0e6-f8704e904b02",
+      "Product One",
+      15
+    );
+    await productRepository.create(product);
+
+    const orderItem = new OrderItemEntity(
+      "ae594473-6724-4b7e-a0e6-f8704e904b03",
+      product.name,
+      product.price,
+      2,
+      product.id
+    );
+
+    const order = new OrderEntity(
+      "ae594473-6724-4b7e-a0e6-f8704e904b03",
+      customer.id,
+      [orderItem]
+    );
+
+    const orderRepository = new OrderRepository();
+    await orderRepository.create(order);
+
+    const allOrders = await orderRepository.findAll();
+
+    expect(allOrders).toHaveLength(1);
+  });
+
+  it("Should find order by id", async () => {
+    const customerRepository = new CustomerRepository();
+    const customer = new CustomerEntity(
+      "ae594473-6724-4b7e-a0e6-f8704e904b01",
+      "John Doe"
+    );
+    const address = new AddressEntity(
+      "Av. Papa João XXIII, 695",
+      "Ribeirão Pires",
+      "São Paulo",
+      "09421-540"
+    );
+    customer.changeAddress(address);
+    await customerRepository.create(customer);
+
+    const productRepository = new ProductRepository();
+    const product = new ProductEntity(
+      "ae594473-6724-4b7e-a0e6-f8704e904b02",
+      "Product One",
+      15
+    );
+    await productRepository.create(product);
+
+    const orderItem = new OrderItemEntity(
+      "ae594473-6724-4b7e-a0e6-f8704e904b03",
+      product.name,
+      product.price,
+      2,
+      product.id
+    );
+
+    const order = new OrderEntity(
+      "ae594473-6724-4b7e-a0e6-f8704e904b03",
+      customer.id,
+      [orderItem]
+    );
+
+    const orderRepository = new OrderRepository();
+    await orderRepository.create(order);
+
+    const foundOrder = await orderRepository.find(order.id);
+
+    expect(order).toStrictEqual(foundOrder);
   });
 });
