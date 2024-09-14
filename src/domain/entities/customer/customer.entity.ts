@@ -5,6 +5,7 @@ export class CustomerEntity {
   private _name: string;
   private _address!: AddressEntity;
   private _active: boolean = false;
+  private _rewardPoints: number = 0;
 
   constructor(id: string, name: string) {
     this._id = id;
@@ -14,6 +15,14 @@ export class CustomerEntity {
 
   get name(): string {
     return this._name;
+  }
+
+  get rewardPoints(): number {
+    return this._rewardPoints;
+  }
+
+  get id(): string {
+    return this._id;
   }
 
   isActive(): boolean {
@@ -47,6 +56,10 @@ export class CustomerEntity {
 
   deactivate() {
     this._active = false;
+  }
+
+  addRewardPoints(points: number): void {
+    this._rewardPoints += points;
   }
 
   set Address(address: AddressEntity) {
