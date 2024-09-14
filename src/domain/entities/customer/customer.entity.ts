@@ -25,6 +25,10 @@ export class CustomerEntity {
     return this._id;
   }
 
+  get address(): AddressEntity {
+    return this._address;
+  }
+
   isActive(): boolean {
     return this._active;
   }
