@@ -14,6 +14,18 @@ export class OrderEntity {
     this._total = this.total();
   }
 
+  get id(): string {
+    return this._id;
+  }
+
+  get customerId(): string {
+    return this._customerId;
+  }
+
+  get items(): OrderItemEntity[] {
+    return this._items;
+  }
+
   total(): number {
     return this._items.reduce((acc, item) => acc + item.orderItemTotal(), 0);
   }

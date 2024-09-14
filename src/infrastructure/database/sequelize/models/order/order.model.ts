@@ -32,10 +32,6 @@ export class OrderModel extends Model {
   @Column
   declare total: number;
 
-  @AllowNull(false)
-  @Column
-  declare order_date: Date;
-
   @HasMany(() => OrderItemModel)
-  declare orderItems: OrderItemModel[];
+  declare items: OrderItemModel[];
 }
