@@ -11,9 +11,9 @@
   },
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "test": "npm run tsc -- --noEmit && jest --watchAll",
+    "test": "npm run tsc -- --noEmit && jest",
     "tsc": "tsc",
-    "test:watch": "jest --watch"
+    "test:watch": "npm run tsc -- --noEmit && jest --watchAll"
   },
   "keywords": [
     "node",
