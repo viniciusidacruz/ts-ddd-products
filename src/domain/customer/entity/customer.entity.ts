@@ -1,6 +1,8 @@
 import { AddressEntity } from "../value-objects";
 
-export class CustomerEntity {
+import { CustomerInterface } from "./customer.interface";
+
+export class CustomerEntity implements CustomerInterface {
   private _id: string;
   private _name: string;
   private _address!: AddressEntity;
