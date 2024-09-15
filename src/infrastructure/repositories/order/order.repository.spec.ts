@@ -7,14 +7,14 @@ import {
 } from "../../database/sequelize/models";
 
 import { CustomerRepository, ProductRepository } from "..";
+import { OrderRepository } from "./order.repository";
+import { CustomerEntity } from "../../../domain/customer/entity/customer.entity";
+import { AddressEntity } from "../../../domain/customer/value-objects";
 import {
   OrderEntity,
-  AddressEntity,
-  ProductEntity,
-  CustomerEntity,
   OrderItemEntity,
-} from "../../../domain/entities";
-import { OrderRepository } from "./order.repository";
+} from "../../../domain/checkout/entities";
+import { ProductEntity } from "../../../domain/product/entity/product.entity";
 
 describe("Order repository test", () => {
   let sequelize: Sequelize;
@@ -142,12 +142,11 @@ describe("Order repository test", () => {
     const orderRepository = new OrderRepository();
     await orderRepository.create(order);
 
-    // Atualizar a ordem
     const updatedOrderItem = new OrderItemEntity(
       orderItem.id,
       "Updated Product",
-      20, // Preço atualizado
-      3, // Quantidade atualizada
+      20,
+      3,
       product.id
     );
 
@@ -157,7 +156,6 @@ describe("Order repository test", () => {
 
     await orderRepository.update(updatedOrder);
 
-    // Buscar a ordem atualizada no banco de dados
     const updatedOrderModel = await OrderModel.findOne({
       where: { id: order.id },
       include: ["items"],
