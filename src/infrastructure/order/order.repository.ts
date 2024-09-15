@@ -1,9 +1,8 @@
-import {
-  OrderEntity,
-  OrderItemEntity,
-} from "../../../domain/checkout/entities";
-import { OrderRepositoryInterface } from "../../../domain/checkout/repositories";
-import { OrderItemModel, OrderModel } from "../../database/sequelize/models";
+import { OrderEntity, OrderItemEntity } from "../../domain/checkout/entities";
+import { OrderRepositoryInterface } from "../../domain/checkout/repositories";
+
+import { OrderModel } from "./order.model";
+import { OrderItemModel } from "./order-item";
 
 export class OrderRepository implements OrderRepositoryInterface {
   async update(entity: OrderEntity): Promise<void> {
@@ -52,6 +51,7 @@ export class OrderRepository implements OrderRepositoryInterface {
   }
 
   async delete(id: string): Promise<void> {
+    await OrderItemModel.destroy({ where: { order_id: id } });
     await OrderModel.destroy({ where: { id } });
   }
 

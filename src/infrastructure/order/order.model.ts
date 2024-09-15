@@ -8,7 +8,7 @@ import {
   BelongsTo,
   HasMany,
 } from "sequelize-typescript";
-import { CustomerModel } from "../customer/customer.model";
+import { CustomerModel } from "../customer/repository/sequelize/customer.model";
 import { OrderItemModel } from "./order-item";
 
 @Table({
@@ -32,6 +32,6 @@ export class OrderModel extends Model {
   @Column
   declare total: number;
 
-  @HasMany(() => OrderItemModel)
+  @HasMany(() => OrderItemModel, { onDelete: "CASCADE" })
   declare items: OrderItemModel[];
 }

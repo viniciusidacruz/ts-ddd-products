@@ -2,13 +2,12 @@ import {
   Model,
   Column,
   Table,
-  AllowNull,
-  PrimaryKey,
   ForeignKey,
   BelongsTo,
+  PrimaryKey,
 } from "sequelize-typescript";
-import { ProductModel } from "../product/product.model";
 import { OrderModel } from "./order.model";
+import { ProductModel } from "../product/repository/sequelize/product.model";
 
 @Table({
   tableName: "order_items",
@@ -19,31 +18,26 @@ export class OrderItemModel extends Model {
   @Column
   declare id: string;
 
-  @ForeignKey(() => ProductModel)
-  @AllowNull(false)
-  @Column
-  declare product_id: string;
-
-  @BelongsTo(() => ProductModel)
-  declare product: ProductModel;
-
   @ForeignKey(() => OrderModel)
-  @AllowNull(false)
   @Column
   declare order_id: string;
 
   @BelongsTo(() => OrderModel)
   declare order: OrderModel;
 
-  @AllowNull(false)
+  @ForeignKey(() => ProductModel)
+  @Column
+  declare product_id: string;
+
+  @BelongsTo(() => ProductModel)
+  declare product: ProductModel;
+
   @Column
   declare name: string;
 
-  @AllowNull(false)
-  @Column
-  declare quantity: number;
-
-  @AllowNull(false)
   @Column
   declare price: number;
+
+  @Column
+  declare quantity: number;
 }
