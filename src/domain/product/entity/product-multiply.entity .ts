@@ -1,6 +1,6 @@
 import { ProductInterface } from "./product.interface";
 
-export class ProductEntity implements ProductInterface {
+export class ProductMultiplyEntity implements ProductInterface {
   private _id: string;
   private _name: string;
   private _price: number;
@@ -8,7 +8,7 @@ export class ProductEntity implements ProductInterface {
   constructor(id: string, name: string, price: number) {
     this._id = id;
     this._name = name;
-    this._price = price;
+    this._price = price * 2;
     this.validate();
   }
 
