@@ -4,8 +4,6 @@ import { CustomerModel } from "../../../infrastructure/customer/repository/seque
 import { CustomerRepository } from "../../../infrastructure/customer/repository/sequelize/customer.repository";
 import { AddressEntity } from "../../../domain/customer/value-objects";
 import { CustomerEntity } from "../../../domain/customer/entity/customer.entity";
-import { FindCustomerUseCase } from "../find/find.customer.usecase";
-import { CustomerFactory } from "../../../domain/customer/entity/factory/customer.factory";
 import { ListCustomerUseCase } from "./list.customer.usecase";
 
 describe("Test integration list customers use case", () => {
