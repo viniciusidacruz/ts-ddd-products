@@ -31,4 +31,20 @@ describe("E2E test for customer", () => {
     expect(response.body.address.state).toBe("São Paulo");
     expect(response.body.address.zipCode).toBe("09421-540");
   });
+
+  it("Should not create a customer", async () => {
+    const response = await request(app)
+      .post("/customer/create")
+      .send({
+        name: "",
+        address: {
+          street: "Av. Papa João XXIII, 695",
+          city: "Ribeirão Pires",
+          state: "São Paulo",
+          zipCode: "09421-540",
+        },
+      });
+
+    expect(response.status).toBe(500);
+  });
 });
