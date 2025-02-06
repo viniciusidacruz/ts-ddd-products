@@ -47,4 +47,29 @@ describe("E2E test for customer", () => {
 
     expect(response.status).toBe(500);
   });
+
+  it("Should find a customer", async () => {
+    const createResponse = await request(app)
+      .post("/customer/create")
+      .send({
+        name: "John Doe",
+        address: {
+          street: "Av. Papa João XXIII, 695",
+          city: "Ribeirão Pires",
+          state: "São Paulo",
+          zipCode: "09421-540",
+        },
+      });
+
+    const findResponse = await request(app).get(
+      `/customer/${createResponse.body.id}/details`
+    );
+
+    expect(findResponse.status).toBe(200);
+    expect(findResponse.body.name).toBe("John Doe");
+    expect(findResponse.body.address.street).toBe("Av. Papa João XXIII, 695");
+    expect(findResponse.body.address.city).toBe("Ribeirão Pires");
+    expect(findResponse.body.address.state).toBe("São Paulo");
+    expect(findResponse.body.address.zipCode).toBe("09421-540");
+  });
 });
