@@ -1,18 +1,23 @@
+import { Entity } from "../../@shared/entity/entity.abstract";
+import { NotificationError } from "../../@shared/notification/notification.error";
+
 import { AddressEntity } from "../value-objects";
 
-import { CustomerInterface } from "./customer.interface";
-
-export class CustomerEntity implements CustomerInterface {
-  private _id: string;
+export class CustomerEntity extends Entity {
   private _name: string;
   private _address!: AddressEntity;
   private _active: boolean = false;
   private _rewardPoints: number = 0;
 
   constructor(id: string, name: string) {
-    this._id = id;
+    super(id);
+
     this._name = name;
     this.validate();
+
+    if (this.notification.hasErrors()) {
+      throw new NotificationError(this.notification.getErrors());
+    }
   }
 
   get name(): string {
@@ -21,10 +26,6 @@ export class CustomerEntity implements CustomerInterface {
 
   get rewardPoints(): number {
     return this._rewardPoints;
-  }
-
-  get id(): string {
-    return this._id;
   }
 
   get address(): AddressEntity {
@@ -36,12 +37,18 @@ export class CustomerEntity implements CustomerInterface {
   }
 
   validate(): boolean {
-    if (this._id.length === 0) {
-      throw new Error("ID is required");
+    if (this.id.length === 0) {
+      this.notification.addError({
+        context: "Customer",
+        message: "ID is required",
+      });
     }
 
     if (this._name.length === 0) {
-      throw new Error("Name is required");
+      this.notification.addError({
+        context: "Customer",
+        message: "Name is required",
+      });
     }
 
     return true;

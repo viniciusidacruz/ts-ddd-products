@@ -43,7 +43,7 @@ describe("Customer repository test", () => {
     await customerRepository.create(customer);
 
     const savedCustomer = await CustomerModel.findOne({
-      where: { id: customer.id },
+      where: { id: customer.getId() },
     });
 
     expect(savedCustomer.toJSON()).toStrictEqual({
@@ -82,7 +82,7 @@ describe("Customer repository test", () => {
     await customerRepository.update(customer);
 
     const updatedCustomer = await CustomerModel.findOne({
-      where: { id: customer.id },
+      where: { id: customer.getId() },
     });
 
     expect(updatedCustomer.toJSON()).toStrictEqual({
@@ -114,7 +114,7 @@ describe("Customer repository test", () => {
 
     await customerRepository.create(customer);
 
-    const customerResult = await customerRepository.find(customer.id);
+    const customerResult = await customerRepository.find(customer.getId());
 
     expect(customer).toStrictEqual(customerResult);
   });
@@ -136,10 +136,10 @@ describe("Customer repository test", () => {
 
     await customerRepository.create(customer);
 
-    await customerRepository.delete(customer.id);
+    await customerRepository.delete(customer.getId());
 
     const deletedCustomer = await CustomerModel.findOne({
-      where: { id: customer.id },
+      where: { id: customer.getId() },
     });
 
     expect(deletedCustomer).toBeNull();

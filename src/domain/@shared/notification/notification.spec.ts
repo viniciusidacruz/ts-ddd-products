@@ -36,4 +36,30 @@ describe("Unit test for Notifications", () => {
       "customer: Error message, customer: Error message 2, order: Error message."
     );
   });
+
+  it("Should check if notification has at least one error", () => {
+    const notification = new Notification();
+
+    const errorOne = {
+      message: "Error message",
+      context: "customer",
+    };
+
+    notification.addError(errorOne);
+
+    expect(notification.hasErrors()).toBeTruthy();
+  });
+
+  it("Should get all errors props", () => {
+    const notification = new Notification();
+
+    const errorOne = {
+      message: "Error message",
+      context: "customer",
+    };
+
+    notification.addError(errorOne);
+
+    expect(notification.getErrors()).toEqual([errorOne]);
+  });
 });

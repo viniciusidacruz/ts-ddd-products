@@ -7,7 +7,7 @@ import { CustomerModel } from "./customer.model";
 export class CustomerRepository implements CustomerRepositoryInterface {
   async create(entity: CustomerEntity): Promise<void> {
     await CustomerModel.create({
-      id: entity.id,
+      id: entity.getId(),
       name: entity.name,
       street: entity.address?.street,
       zipCode: entity.address?.zipCode,
@@ -29,7 +29,7 @@ export class CustomerRepository implements CustomerRepositoryInterface {
         active: entity.isActive(),
         rewardPoints: entity.rewardPoints,
       },
-      { where: { id: entity.id } }
+      { where: { id: entity.getId() } }
     );
   }
 

@@ -73,7 +73,7 @@ describe("Order repository test", () => {
 
     const order = new OrderEntity(
       "ae594473-6724-4b7e-a0e6-f8704e904b03",
-      customer.id,
+      customer.getId(),
       [orderItem]
     );
 
@@ -87,7 +87,7 @@ describe("Order repository test", () => {
 
     expect(orderModel.toJSON()).toStrictEqual({
       id: order.id,
-      customer_id: customer.id,
+      customer_id: customer.getId(),
       total: order.total(),
       items: [
         {
@@ -135,7 +135,7 @@ describe("Order repository test", () => {
 
     const order = new OrderEntity(
       "ae594473-6724-4b7e-a0e6-f8704e904b03",
-      customer.id,
+      customer.getId(),
       [orderItem]
     );
 
@@ -150,7 +150,7 @@ describe("Order repository test", () => {
       product.id
     );
 
-    const updatedOrder = new OrderEntity(order.id, customer.id, [
+    const updatedOrder = new OrderEntity(order.id, customer.getId(), [
       updatedOrderItem,
     ]);
 
@@ -211,7 +211,7 @@ describe("Order repository test", () => {
 
     const order = new OrderEntity(
       "ae594473-6724-4b7e-a0e6-f8704e904b03",
-      customer.id,
+      customer.getId(),
       [orderItem]
     );
 
@@ -260,7 +260,7 @@ describe("Order repository test", () => {
 
     const order = new OrderEntity(
       "ae594473-6724-4b7e-a0e6-f8704e904b03",
-      customer.id,
+      customer.getId(),
       [orderItem]
     );
 
@@ -305,7 +305,7 @@ describe("Order repository test", () => {
 
     const order = new OrderEntity(
       "ae594473-6724-4b7e-a0e6-f8704e904b03",
-      customer.id,
+      customer.getId(),
       [orderItem]
     );
 

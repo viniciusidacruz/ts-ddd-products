@@ -45,11 +45,11 @@ describe("Unit test use case delete a customer", () => {
     await customerRepository.create(customer);
 
     const input = {
-      id: customer.id,
+      id: customer.getId(),
     };
 
     await deleteUserCaseCustomer.execute(input);
 
-    await expect(customerRepository.find(customer.id)).rejects.toThrow();
+    await expect(customerRepository.find(customer.getId())).rejects.toThrow();
   });
 });

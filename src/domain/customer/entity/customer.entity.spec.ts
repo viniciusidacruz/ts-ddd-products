@@ -7,13 +7,13 @@ describe("Customer unit tests", () => {
     it("Should throw error when id is empty", () => {
       expect(() => {
         new CustomerEntity("", "John Doe");
-      }).toThrow("ID is required");
+      }).toThrow("Customer: ID is required");
     });
 
     it("Should throw error when name is empty", () => {
       expect(() => {
         new CustomerEntity("07556a1c-7b82-4104-94b1-cb8cab474a19", "");
-      }).toThrow("Name is required");
+      }).toThrow("Customer: Name is required");
     });
 
     it("Should throw error when called activate but address is empty", () => {
