@@ -1,4 +1,4 @@
-import { ProductFactory } from "../../../domain/product/entity/factory/product.factory";
+import { ProductFactory } from "../../../domain/product/factory/product.factory";
 import { ListProductUserCase } from "./list.product.usecase";
 
 const productOne = ProductFactory.create("One", 1);

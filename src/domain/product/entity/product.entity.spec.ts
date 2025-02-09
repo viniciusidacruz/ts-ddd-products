@@ -26,16 +26,6 @@ describe("Product unit tests", () => {
   });
 
   describe("Success ✅", () => {
-    it("Should create a valid product", () => {
-      const product = new ProductEntity(
-        "07556a1c-7b82-4104-94b1-cb8cab474a19",
-        "Product One",
-        100
-      );
-
-      expect(product.validate()).toBeTruthy();
-    });
-
     it("Should update a product's name", () => {
       const product = new ProductEntity(
         "07556a1c-7b82-4104-94b1-cb8cab474a19",

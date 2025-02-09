@@ -1,4 +1,4 @@
-import { ProductFactory } from "../../../domain/product/entity/factory/product.factory";
+import { ProductFactory } from "../../../domain/product/factory/product.factory";
 import { ProductRepositoryInterface } from "../../../domain/product/repositories";
 import {
   InputCreateProductDTO,
