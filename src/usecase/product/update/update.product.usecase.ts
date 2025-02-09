@@ -16,7 +16,7 @@ export class UpdateProductUseCase {
     await this.productRepository.update(product);
 
     return {
-      id: product.id,
+      id: product.getId(),
       name: product.name,
       price: product.price,
     };

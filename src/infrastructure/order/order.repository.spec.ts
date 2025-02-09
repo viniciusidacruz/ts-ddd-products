@@ -68,7 +68,7 @@ describe("Order repository test", () => {
       product.name,
       product.price,
       2,
-      product.id
+      product.getId()
     );
 
     const order = new OrderEntity(
@@ -96,7 +96,7 @@ describe("Order repository test", () => {
           price: orderItem.price,
           quantity: orderItem.quantity,
           order_id: order.id,
-          product_id: product.id,
+          product_id: product.getId(),
         },
       ],
     });
@@ -130,7 +130,7 @@ describe("Order repository test", () => {
       product.name,
       product.price,
       2,
-      product.id
+      product.getId()
     );
 
     const order = new OrderEntity(
@@ -147,7 +147,7 @@ describe("Order repository test", () => {
       "Updated Product",
       20,
       3,
-      product.id
+      product.getId()
     );
 
     const updatedOrder = new OrderEntity(order.id, customer.getId(), [
@@ -172,7 +172,7 @@ describe("Order repository test", () => {
           price: updatedOrderItem.price,
           quantity: updatedOrderItem.quantity,
           order_id: updatedOrder.id,
-          product_id: product.id,
+          product_id: product.getId(),
         },
       ],
     });
@@ -206,7 +206,7 @@ describe("Order repository test", () => {
       product.name,
       product.price,
       2,
-      product.id
+      product.getId()
     );
 
     const order = new OrderEntity(
@@ -255,7 +255,7 @@ describe("Order repository test", () => {
       product.name,
       product.price,
       2,
-      product.id
+      product.getId()
     );
 
     const order = new OrderEntity(
@@ -300,7 +300,7 @@ describe("Order repository test", () => {
       product.name,
       product.price,
       2,
-      product.id
+      product.getId()
     );
 
     const order = new OrderEntity(

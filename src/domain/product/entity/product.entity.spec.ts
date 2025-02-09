@@ -5,13 +5,13 @@ describe("Product unit tests", () => {
     it("Should throw an error when id is empty", () => {
       expect(() => {
         new ProductEntity("", "Product One", 100);
-      }).toThrow("ID is required");
+      }).toThrow("Product: ID is required");
     });
 
     it("Should throw an error when name is empty", () => {
       expect(() => {
         new ProductEntity("07556a1c-7b82-4104-94b1-cb8cab474a19", "", 100);
-      }).toThrow("Name is required");
+      }).toThrow("Product: Name is required");
     });
 
     it("Should throw an error when price is less than or equal to 0", () => {
@@ -21,7 +21,7 @@ describe("Product unit tests", () => {
           "Product One",
           0
         );
-      }).toThrow("Price must be greater than 0");
+      }).toThrow("Product: Price must be greater than 0");
     });
   });
 
