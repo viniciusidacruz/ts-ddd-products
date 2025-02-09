@@ -13,7 +13,7 @@ const customer = CustomerFactory.createWithAddress(
 );
 
 const input = {
-  id: customer.getId(),
+  id: customer.id,
 };
 
 const MockRepository = () => {
@@ -35,6 +35,6 @@ describe("Unit test use case delete a customer", () => {
 
     await deleteUserCaseCustomer.execute(input);
 
-    expect(customerRepository.delete).toHaveBeenCalledWith(customer.getId());
+    expect(customerRepository.delete).toHaveBeenCalledWith(customer.id);
   });
 });

@@ -68,12 +68,12 @@ describe("Order repository test", () => {
       product.name,
       product.price,
       2,
-      product.getId()
+      product.id
     );
 
     const order = new OrderEntity(
       "ae594473-6724-4b7e-a0e6-f8704e904b03",
-      customer.getId(),
+      customer.id,
       [orderItem]
     );
 
@@ -87,7 +87,7 @@ describe("Order repository test", () => {
 
     expect(orderModel.toJSON()).toStrictEqual({
       id: order.id,
-      customer_id: customer.getId(),
+      customer_id: customer.id,
       total: order.total(),
       items: [
         {
@@ -96,7 +96,7 @@ describe("Order repository test", () => {
           price: orderItem.price,
           quantity: orderItem.quantity,
           order_id: order.id,
-          product_id: product.getId(),
+          product_id: product.id,
         },
       ],
     });
@@ -130,12 +130,12 @@ describe("Order repository test", () => {
       product.name,
       product.price,
       2,
-      product.getId()
+      product.id
     );
 
     const order = new OrderEntity(
       "ae594473-6724-4b7e-a0e6-f8704e904b03",
-      customer.getId(),
+      customer.id,
       [orderItem]
     );
 
@@ -147,10 +147,10 @@ describe("Order repository test", () => {
       "Updated Product",
       20,
       3,
-      product.getId()
+      product.id
     );
 
-    const updatedOrder = new OrderEntity(order.id, customer.getId(), [
+    const updatedOrder = new OrderEntity(order.id, customer.id, [
       updatedOrderItem,
     ]);
 
@@ -172,7 +172,7 @@ describe("Order repository test", () => {
           price: updatedOrderItem.price,
           quantity: updatedOrderItem.quantity,
           order_id: updatedOrder.id,
-          product_id: product.getId(),
+          product_id: product.id,
         },
       ],
     });
@@ -206,12 +206,12 @@ describe("Order repository test", () => {
       product.name,
       product.price,
       2,
-      product.getId()
+      product.id
     );
 
     const order = new OrderEntity(
       "ae594473-6724-4b7e-a0e6-f8704e904b03",
-      customer.getId(),
+      customer.id,
       [orderItem]
     );
 
@@ -255,12 +255,12 @@ describe("Order repository test", () => {
       product.name,
       product.price,
       2,
-      product.getId()
+      product.id
     );
 
     const order = new OrderEntity(
       "ae594473-6724-4b7e-a0e6-f8704e904b03",
-      customer.getId(),
+      customer.id,
       [orderItem]
     );
 
@@ -300,12 +300,12 @@ describe("Order repository test", () => {
       product.name,
       product.price,
       2,
-      product.getId()
+      product.id
     );
 
     const order = new OrderEntity(
       "ae594473-6724-4b7e-a0e6-f8704e904b03",
-      customer.getId(),
+      customer.id,
       [orderItem]
     );
 

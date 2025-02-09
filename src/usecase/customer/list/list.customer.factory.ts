@@ -5,7 +5,7 @@ export class OutputMapper {
   static toOutput(customers: CustomerEntity[]): OutputListCustomerDTO {
     return {
       customers: customers.map((customer) => ({
-        id: customer.getId(),
+        id: customer.id,
         name: customer.name,
         address: {
           street: customer.address.street,

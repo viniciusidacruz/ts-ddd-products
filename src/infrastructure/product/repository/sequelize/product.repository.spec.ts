@@ -88,7 +88,7 @@ describe("Product repository test", () => {
     );
 
     expect(productModel.toJSON()).toStrictEqual({
-      id: foundProduct.getId(),
+      id: foundProduct.id,
       name: foundProduct.name,
       price: foundProduct.price,
     });

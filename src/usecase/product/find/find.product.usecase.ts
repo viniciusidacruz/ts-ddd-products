@@ -8,7 +8,7 @@ export class FindProductUseCase {
     const product = await this.productRepository.find(input.id);
 
     return {
-      id: product.getId(),
+      id: product.id,
       name: product.name,
       price: product.price,
     };

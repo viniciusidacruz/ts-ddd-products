@@ -13,7 +13,7 @@ const customer = CustomerFactory.createWithAddress(
 );
 
 const input = {
-  id: customer.getId(),
+  id: customer.id,
   name: "John Updated",
   address: {
     street: "Nova rua",

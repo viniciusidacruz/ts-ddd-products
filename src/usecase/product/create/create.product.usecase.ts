@@ -14,7 +14,7 @@ export class CreateProductUseCase {
     await this.productRepository.create(product);
 
     return {
-      id: product.getId(),
+      id: product.id,
       name: product.name,
       price: product.price,
     };
