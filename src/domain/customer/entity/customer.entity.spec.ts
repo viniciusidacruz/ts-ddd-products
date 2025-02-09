@@ -51,15 +51,6 @@ describe("Customer unit tests", () => {
       expect(customer.rewardPoints).toBe(100);
     });
 
-    it("Should is validated", () => {
-      const customer = new CustomerEntity(
-        "07556a1c-7b82-4104-94b1-cb8cab474a19",
-        "John Doe"
-      );
-
-      expect(customer.validate()).toBeTruthy();
-    });
-
     it("Should activate customer", () => {
       const customer = new CustomerEntity(
         "07556a1c-7b82-4104-94b1-cb8cab474a19",

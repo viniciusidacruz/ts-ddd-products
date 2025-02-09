@@ -1,7 +1,7 @@
 import { v4 as uuid } from "uuid";
 
-import { CustomerEntity } from "../customer.entity";
-import { AddressEntity } from "../../value-objects";
+import { CustomerEntity } from "../entity/customer.entity";
+import { AddressEntity } from "../value-objects";
 
 export class CustomerFactory {
   public static create(name: string): CustomerEntity {

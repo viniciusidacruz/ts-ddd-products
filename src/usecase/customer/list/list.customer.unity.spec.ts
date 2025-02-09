@@ -1,4 +1,4 @@
-import { CustomerFactory } from "../../../domain/customer/entity/factory/customer.factory";
+import { CustomerFactory } from "../../../domain/customer/factory/customer.factory";
 import { AddressEntity } from "../../../domain/customer/value-objects";
 import { ListCustomerUseCase } from "./list.customer.usecase";
 

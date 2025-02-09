@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize-typescript";
 
-import { CustomerFactory } from "../../../domain/customer/entity/factory/customer.factory";
+import { CustomerFactory } from "../../../domain/customer/factory/customer.factory";
 import { AddressEntity } from "../../../domain/customer/value-objects";
 import { UpdateCustomerUseCase } from "./update.customer.usecase";
 import { CustomerModel } from "../../../infrastructure/customer/repository/sequelize/customer.model";

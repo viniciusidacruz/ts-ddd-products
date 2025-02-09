@@ -3,7 +3,7 @@ import * as yup from "yup";
 import { CustomerEntity } from "../entity/customer.entity";
 import { ValidatorInterface } from "../../@shared/validator/validator.interface";
 
-export class CustomerZodValidator
+export class CustomerYupValidator
   implements ValidatorInterface<CustomerEntity>
 {
   validate(entity: CustomerEntity): void {
@@ -11,8 +11,8 @@ export class CustomerZodValidator
       yup
         .object()
         .shape({
-          id: yup.string().required(),
-          name: yup.string().required(),
+          id: yup.string().required("ID is required"),
+          name: yup.string().required("Name is required"),
         })
         .validateSync(
           {

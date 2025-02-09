@@ -1,4 +1,4 @@
-import { AddressEntity } from "../../value-objects";
+import { AddressEntity } from "../value-objects";
 
 import { CustomerFactory } from "./customer.factory";
 
