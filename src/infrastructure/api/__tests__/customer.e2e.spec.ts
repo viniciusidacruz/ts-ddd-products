@@ -113,6 +113,16 @@ describe("E2E test for customer", () => {
     expect(findResponse.body.customers[1].address.street).toBe(
       "Rua das Flores, 123"
     );
+
+    const listResponseXML = await request(app)
+      .get("/customer/list")
+      .set("Accept", "application/xml");
+
+    expect(listResponseXML.status).toBe(200);
+    expect(listResponseXML.text).toContain(
+      `<?xml version="1.0" encoding="UTF-8"?>`
+    );
+    expect(listResponseXML.text).toContain("<customer>");
   });
 
   it("Should update a customer", async () => {

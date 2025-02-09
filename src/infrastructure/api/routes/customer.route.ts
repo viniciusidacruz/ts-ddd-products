@@ -5,6 +5,7 @@ import { FindCustomerUseCase } from "../../../usecase/customer/find/find.custome
 import { ListCustomerUseCase } from "../../../usecase/customer/list/list.customer.usecase";
 import { UpdateCustomerUseCase } from "../../../usecase/customer/update/update.customer.usecase";
 import { DeleteCustomerUseCase } from "../../../usecase/customer/delete/delete.customer.usecase";
+import { CustomerPresenter } from "../presenters/customer.presenter";
 
 export const customerRoute = express.Router();
 
@@ -46,14 +47,12 @@ customerRoute.get(
 
 customerRoute.get("/list", async (request: Request, response: Response) => {
   const useCase = new ListCustomerUseCase(new CustomerRepository());
+  const output = await useCase.execute({});
 
-  try {
-    const output = await useCase.execute({});
-
-    response.status(200).send(output);
-  } catch (err) {
-    response.status(500).send(err);
-  }
+  response.format({
+    json: async () => response.send(output),
+    xml: async () => response.send(CustomerPresenter.listXML(output)),
+  });
 });
 
 customerRoute.put(
